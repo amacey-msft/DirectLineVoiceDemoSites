@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TelcoX - Connecting Your World</title>
+
+  <!-- ✅ Properly load fonts and icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
+    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <style>
+
+    body {
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #0f2027, #2c5364);
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 90vh;
+      text-align: center;
+      margin-bottom: 0;
+    }
+
+    .logo {
+      font-size: 3rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+      color: #00c6ff;
+    }
+
+    .tagline {
+      font-size: 1.5rem;
+      margin-bottom: 2rem;
+      color: #fff;
+    }
+
+    .cta {
+      background: #00c6ff;
+      color: #fff;
+      padding: 1rem 2.5rem;
+      border: none;
+      border-radius: 30px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 4px 20px rgba(0,198,255,0.2);
+      transition: background 0.3s;
+    }
+
+    .cta:hover {
+      background: #0072ff;
+    }
+
+    .features {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-top: 3rem;
+      gap: 2rem;
+    }
+
+    .feature {
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      padding: 2rem 1.5rem;
+      width: 260px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      text-align: center;
+      transition: box-shadow 0.2s, border 0.2s, background 0.2s;
+      cursor: pointer; /* Makes it feel more interactive */
+    }
+
+    .feature:hover {
+      box-shadow: 0 4px 24px rgba(0,198,255,0.35);
+      border: 2px solid #00c6ff;
+      background: rgba(0,198,255,0.10);
+    }
+
+    .feature i {
+      font-size: 2.5rem;
+      color: #00c6ff;
+      margin-bottom: 1rem;
+    }
+
+    .feature-title {
+      font-size: 1.2rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .feature-desc {
+      font-size: 1rem;
+      color: #cce6ff;
+    }
+
+    @media (max-width: 900px) {
+      .features {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    /* Navigation Bar Styles */
+    .navbar {
+      width: 100%;
+      background: #0f2027;
+      color: #fff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      font-family: 'Montserrat', Arial, sans-serif;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 2000;
+      height: 64px;
+    }
+    .nav-container {
+      width: 100%;
+      max-width: 1200px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px;
+    }
+    .nav-logo {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #00c6ff;
+      letter-spacing: 1px;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .nav-menu {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .nav-item {
+      position: relative;
+    }
+    .nav-link {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 1rem;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      transition: background 0.3s;
+    }
+    .nav-link:hover {
+      background: rgba(255,255,255,0.1);
+    }
+
+    /* Hero background image styles */
+    .hero-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 420px;
+      z-index: 0;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
+      /* Example Unsplash image of telephone lines in countryside */
+      opacity: 0.45;
+      pointer-events: none;
+    }
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: #1a2b3c;
+      min-width: 180px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(0,198,255,0.10);
+      z-index: 2100;
+      padding: 0.5rem 0;
+    }
+    .dropdown a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.98rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown a:hover, .dropdown a:focus {
+      background: #00c6ff;
+      color: #fff;
+    }
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+<div class="navbar">
+  <div class="nav-container">
+    <div class="nav-logo"><i class="fa-solid fa-tower-cell"></i> TelcoXel</div>
+    <ul class="nav-menu">
+      <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Services <i class="fa fa-caret-down"></i></a>
+        <div class="dropdown">
+          <a href="#">Internet</a>
+          <a href="#">Television</a>
+          <a href="#">Mobile</a>
+          <a href="#">Home Telephone</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">About <i class="fa fa-caret-down"></i></a>
+        <div class="dropdown">
+          <a href="#">Leadership</a>
+          <a href="#">Careers</a>
+        </div>
+      </li>
+      <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- Hero Section with background image -->
+<div style="position: relative;">
+  <div class="hero-bg"></div>
+  <div class="hero">
+    <div class="logo"><i class="fa-solid fa-tower-cell"></i> TelcoXel</div>
+    <div class="tagline">Connecting Your World with Reliable, Fast, and Secure Telecommunications</div>
+    <button class="cta">Get Started</button>
+    <div class="features">
+      <div class="feature">
+        <i class="fa-solid fa-wifi"></i>
+        <div class="feature-title">Ultra-Fast Internet</div>
+        <div class="feature-desc">Experience blazing speeds with our next-gen fiber network.</div>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-mobile-screen"></i>
+        <div class="feature-title">Mobile Plans</div>
+        <div class="feature-desc">Flexible, affordable plans for every need and device.</div>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-headset"></i>
+        <div class="feature-title">24/7 Support</div>
+        <div class="feature-desc">Our experts are always here to help you stay connected.</div>
+      </div>
+      <div class="feature">
+        <i class="fa-solid fa-shield-halved"></i>
+        <div class="feature-title">Secure Connections</div>
+        <div class="feature-desc">Your privacy and security are our top priorities.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Floating Chat Button -->
+<button id="chat-toggle" style="
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  background: #00c6ff;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  font-size: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0,198,255,0.4);
+  cursor: pointer;
+  z-index: 1000;
+">
+  💬
+</button>
+
+<!-- Floating Chat Container -->
+<div id="chat-box" style="
+  position: fixed;
+  bottom: 100px;
+  right: 24px;
+  width: 360px;
+  height: 600px; /* Increased height */
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0,198,255,0.2);
+  background-color: #1a2b3c;
+  display: none;
+  z-index: 1050;
+  border: 3px solid #00c6ff; /* Match TelcoXel heading color */
+">
+  <!-- Close Button -->
+  <div style="
+    text-align: right;
+    background: #0f2027;
+    padding: 0.5rem;
+  ">
+    <button id="chat-close" style="
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.2rem;
+      cursor: pointer;
+    " title="Close chat">✖</button>
+  </div>
+  <!-- Web Chat will be rendered here -->
+  <div id="webchat" role="main" style="width:100%; height:calc(100% - 40px);">
+    <iframe src="https://copilotstudio.preview.microsoft.com/environments/8247265b-b5f8-e149-9209-5a3455e1a81d/bots/cr377_sentimentAnalysisAgent/webchat?__version__=2" frameborder="0" style="width: 100%; height: 100%;"></iframe>
+
+  </div>
+
+
+</div>
+
+
+<script>
+  const toggleBtn = document.getElementById('chat-toggle');
+  const chatBox = document.getElementById('chat-box');
+  const closeBtn = document.getElementById('chat-close');
+
+  toggleBtn.addEventListener('click', () => {
+    const isVisible = chatBox.style.display === 'block';
+    chatBox.style.display = isVisible ? 'none' : 'block';
+    toggleBtn.innerHTML = isVisible ? '✖' : '💬';
+  });
+
+  closeBtn.addEventListener('click', () => {
+    chatBox.style.display = 'none';
+    toggleBtn.innerHTML = '💬';
+  });
+</script>
+
+<!-- Footer -->
+<footer class="footer" style="
+  width: 100%;
+  background: #0f2027;
+  color: #cce6ff;
+  text-align: center;
+  padding: 1.5rem 0 0.5rem 0;
+  font-size: 1rem;
+  margin-top: 3rem;
+">
+  &copy; <span id="copyright-year"></span> TelcoXel. All rights reserved.
+  <span style="color: #00c6ff; font-weight: 600; margin-left: 0.5rem;">Built by GitHub Copilot</span>
+</footer>
+<script>
+  // Set copyright year
+  document.getElementById('copyright-year').textContent = new Date().getFullYear();
+</script>
+
+</body>
+</html>

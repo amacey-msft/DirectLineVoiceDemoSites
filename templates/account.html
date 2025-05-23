@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Details - MyTelco</title>
+    <style>
+        body { font-family: 'Segoe UI', Arial, sans-serif; background: #f3f6fa; }
+        .container { max-width: 480px; margin: 40px auto; background: #fff; border-radius: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); padding: 32px; }
+        h2 { color: #0078d4; margin-bottom: 24px; }
+        .info { margin-bottom: 14px; }
+        .label { font-weight: bold; color: #222; width: 140px; display: inline-block; }
+        .value { color: #444; }
+        .status-active { color: #28a745; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Account Details</h2>
+        <div class="info"><span class="label">Name:</span> <span class="value">{{ user.name }}</span></div>
+        <div class="info"><span class="label">Account #:</span> <span class="value">{{ user.account_number }}</span></div>
+        <div class="info"><span class="label">Email:</span> <span class="value">{{ user.email }}</span></div>
+        <div class="info"><span class="label">Phone:</span> <span class="value">{{ user.phone }}</span></div>
+        <div class="info"><span class="label">Plan:</span> <span class="value">{{ user.plan }}</span></div>
+        <div class="info"><span class="label">Balance:</span> <span class="value">{{ user.balance }}</span></div>
+        <div class="info"><span class="label">Status:</span> <span class="value status-active">{{ user.status }}</span></div>
+        <div class="info"><span class="label">Address:</span> <span class="value">{{ user.address }}</span></div>
+    </div>
+</body>
+</html>
