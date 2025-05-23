@@ -5,15 +5,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
       html, body {
-        height: 100%;
+        height: 575px;
       }
       body {
         margin: 0;
         font-family: 'Montserrat', Arial, sans-serif;
         background: linear-gradient(120deg, #0f2027, #2c5364);
         color: #fff;
-        height: 100vh;
-        min-height: 100vh;
+        height: 100%;
+        min-height: 100%;
         overflow: hidden;
       }
       .banner {
@@ -24,6 +24,7 @@
         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
         padding: 0 32px;
         flex-shrink: 0;
+        justify-content: space-between; /* Add this line */
       }
       .banner h1 {
         color: #00c6ff;
@@ -35,6 +36,16 @@
         display: flex;
         align-items: center;
         gap: 0.5rem;
+      }
+      .banner .close-btn {
+        background: transparent;
+        border: none;
+        color: #fff;
+        font-size: 1.6rem;
+        cursor: pointer;
+        margin-left: 1rem;
+        line-height: 1;
+        padding: 0;
       }
       #webchat {
         flex: 1 1 auto;
@@ -48,7 +59,7 @@
         padding: 0;
         display: flex;
         flex-direction: column;
-        height: calc(100vh - 64px);
+        height: 600px; /* <-- changed from 100vh */
         min-height: 0;
       }
       /* Remove extra margin at the top of the chat area */
@@ -71,10 +82,7 @@
     </style>
   </head>
   <body>
-    <div style="display:flex; flex-direction:column; height:100vh;">
-      <div class="banner">
-        <h1><i class="fa-solid fa-tower-cell"></i> TelcoXel Agent</h1>
-      </div>
+    <div style="display:flex; flex-direction:column; height:100%;">
       <div id="webchat" role="main"></div>
     </div>
 
@@ -84,19 +92,19 @@
         const styleOptions = {
           hideUploadButton: true,
           backgroundColor: '#1a2b3c',
-          bubbleBackground: '#00c6ff',
-          bubbleTextColor: '#ffffff',
-          bubbleBorderRadius: 12,
-          fontFamily: "'Montserrat', Arial, sans-serif",
-          sendBoxBackground: '#2c5364',
-          sendBoxTextColor: '#ffffff',
+          bubbleBackground: '#f5f7fa', // Light bubble for better contrast
+          bubbleTextColor: '#00334e',  // Dark blue text for readability
+          bubbleBorderRadius: 14,
+          fontFamily: "'Segoe UI', 'Montserrat', Arial, sans-serif", // Softer, more readable font
+          sendBoxBackground: '#e6f2fa',
+          sendBoxTextColor: '#00334e',
           sendBoxButtonColor: '#00c6ff',
           accent: '#00c6ff',
           botAvatarInitials: 'TX',
           userAvatarInitials: 'You',
-          // Ensure the send box is always visible
           sendBoxHeight: 48,
-          sendBoxBorderTop: '1px solid #00c6ff'
+          sendBoxBorderTop: '1px solid #00c6ff',
+          paddingBottom: 12, // or 16 for more space
         };
 
         const tokenEndpointURL = new URL('https://8247265bb5f8e14992095a3455e1a8.1d.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr377_sentimentAnalysisAgent/directline/token?api-version=2022-03-01-preview');
