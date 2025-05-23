@@ -16,6 +16,10 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 'static'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+@app.route('/agent')
+def agent():
+    return render_template('basic_agent.html')
+
 @app.route('/account')
 def account():
     user = {

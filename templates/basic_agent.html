@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>TelcoXel Agent Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+      html, body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: 'Montserrat', Arial, sans-serif;
+        background: linear-gradient(120deg, #0f2027, #2c5364);
+        color: #fff;
+        height: 100vh;
+        min-height: 100vh;
+        overflow: hidden;
+      }
+      .banner {
+        align-items: center;
+        background-color: #0f2027;
+        display: flex;
+        height: 64px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+        padding: 0 32px;
+        flex-shrink: 0;
+      }
+      .banner h1 {
+        color: #00c6ff;
+        font-family: 'Montserrat', Arial, sans-serif;
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 2px;
+        margin: 0;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+      #webchat {
+        flex: 1 1 auto;
+        width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+        background: #1a2b3c;
+        border-radius: 0 0 16px 16px;
+        box-shadow: 0 4px 20px rgba(0,198,255,0.15);
+        overflow: hidden;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 64px);
+        min-height: 0;
+      }
+      /* Remove extra margin at the top of the chat area */
+      .webchat__stacked-layout__main {
+        margin-top: 0 !important;
+      }
+      /* Make sure the chat area and input fill the space */
+      #webchat > * {
+        flex: 1 1 auto;
+        min-height: 0;
+      }
+      @media (max-width: 700px) {
+        #webchat {
+          max-width: 98vw;
+        }
+        .banner h1 {
+          font-size: 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display:flex; flex-direction:column; height:100vh;">
+      <div class="banner">
+        <h1><i class="fa-solid fa-tower-cell"></i> TelcoXel Agent</h1>
+      </div>
+      <div id="webchat" role="main"></div>
+    </div>
+
+    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+    <script>
+      (async function () {
+        const styleOptions = {
+          hideUploadButton: true,
+          backgroundColor: '#1a2b3c',
+          bubbleBackground: '#00c6ff',
+          bubbleTextColor: '#ffffff',
+          bubbleBorderRadius: 12,
+          fontFamily: "'Montserrat', Arial, sans-serif",
+          sendBoxBackground: '#2c5364',
+          sendBoxTextColor: '#ffffff',
+          sendBoxButtonColor: '#00c6ff',
+          accent: '#00c6ff',
+          botAvatarInitials: 'TX',
+          userAvatarInitials: 'You',
+          // Ensure the send box is always visible
+          sendBoxHeight: 48,
+          sendBoxBorderTop: '1px solid #00c6ff'
+        };
+
+        const tokenEndpointURL = new URL('https://8247265bb5f8e14992095a3455e1a8.1d.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr377_sentimentAnalysisAgent/directline/token?api-version=2022-03-01-preview');
+        const locale = document.documentElement.lang || 'en';
+        const apiVersion = tokenEndpointURL.searchParams.get('api-version');
+
+        const [directLineURL, token] = await Promise.all([
+          fetch(new URL(`/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`, tokenEndpointURL))
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to retrieve regional channel settings.');
+              }
+              return response.json();
+            })
+            .then(({ channelUrlsById: { directline } }) => directline),
+          fetch(tokenEndpointURL)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to retrieve Direct Line token.');
+              }
+              return response.json();
+            })
+            .then(({ token }) => token)
+        ]);
+
+        const directLine = WebChat.createDirectLine({ domain: new URL('v3/directline', directLineURL), token });
+
+        const subscription = directLine.connectionStatus$.subscribe({
+          next(value) {
+            if (value === 2) {
+              directLine
+                .postActivity({
+                  localTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                  locale,
+                  name: 'startConversation',
+                  type: 'event'
+                })
+                .subscribe();
+              subscription.unsubscribe();
+            }
+          }
+        });
+
+        WebChat.renderWebChat({ directLine, locale, styleOptions }, document.getElementById('webchat'));
+      })();
+    </script>
+  </body>
+</html>

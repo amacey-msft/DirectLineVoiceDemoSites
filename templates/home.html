@@ -319,14 +319,18 @@
     " title="Close chat">✖</button>
   </div>
   <!-- Web Chat will be rendered here -->
-  <div id="webchat" role="main" style="width:100%; height:calc(100% - 40px);">
-    <iframe src="https://copilotstudio.preview.microsoft.com/environments/8247265b-b5f8-e149-9209-5a3455e1a81d/bots/cr377_sentimentAnalysisAgent/webchat?__version__=2" frameborder="0" style="width: 100%; height: 100%;"></iframe>
-
+  <div id="webchat" role="main" style="width:100%; height:calc(100% - 40px); padding:0; margin:0; overflow:hidden;">
+    <iframe 
+      src="/agent" 
+      frameborder="0" 
+      style="width: 100%; height: 100%; border: none; overflow: hidden; display: block;"
+      scrolling="no"
+      allow="clipboard-write"
+    ></iframe>
   </div>
 
 
 </div>
-
 
 <script>
   const toggleBtn = document.getElementById('chat-toggle');
@@ -343,6 +347,8 @@
     chatBox.style.display = 'none';
     toggleBtn.innerHTML = '💬';
   });
+
+  // Removed fetchAzureToken and related code
 </script>
 
 <!-- Footer -->
