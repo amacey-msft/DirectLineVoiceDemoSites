@@ -9,7 +9,14 @@ A Flask-based web application featuring AI chat integration with Azure Bot Frame
 - 📱 Responsive design with mobile support
 - ⚡ Real-time speech synthesis with customizable voices
 
-## Quick Start
+## URL for Example Sites:
+## Includes Directline Speech and TTS Configuration ##
+Contoso Coffee: https://2025demowebappexample-gja6b0hrg3evghd2.eastus2-01.azurewebsites.net/contoso
+Springfield Government: https://2025demowebappexample-gja6b0hrg3evghd2.eastus2-01.azurewebsites.net/springfield
+
+## Chat agent examples, less functional than above ##
+Ravenna City: https://2025demowebappexample-gja6b0hrg3evghd2.eastus2-01.azurewebsites.net/
+IRS Example: https://2025demowebappexample-gja6b0hrg3evghd2.eastus2-01.azurewebsites.net/irs
 
 ### Prerequisites
 - Python 3.8+
