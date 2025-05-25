@@ -1,4 +1,4 @@
-# Government Site with AI Chat Integration
+# Custom Web Sites with AI Chat Integration
 
 A Flask-based web application featuring AI chat integration with Azure Bot Framework and Text-to-Speech capabilities.
 
