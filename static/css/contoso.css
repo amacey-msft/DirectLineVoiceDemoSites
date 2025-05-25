@@ -1,0 +1,764 @@
+/* Contoso Coffee Styling - Inspired by Microsoft Contoso Demos */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  color: #2C1810;
+  background-color: #FEFCF8;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Navigation */
+.navbar {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  border-bottom: 1px solid rgba(139, 69, 19, 0.1);
+}
+
+.nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.logo {
+  height: 32px;
+  width: auto;
+}
+
+.brand-text {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8B4513;
+}
+
+.nav-menu {
+  display: flex;
+  list-style: none;
+  gap: 2rem;
+}
+
+.nav-menu a {
+  text-decoration: none;
+  color: #2C1810;
+  font-weight: 500;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.nav-menu a:hover {
+  color: #8B4513;
+}
+
+.nav-menu a::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 2px;
+  bottom: -5px;
+  left: 0;
+  background-color: #8B4513;
+  transition: width 0.3s ease;
+}
+
+.nav-menu a:hover::after {
+  width: 100%;
+}
+
+/* Hero Section */
+.hero {
+  position: relative;
+  height: 100vh;
+  background: 
+    linear-gradient(135deg, rgba(139, 69, 19, 0.75) 0%, rgba(160, 82, 45, 0.65) 50%, rgba(205, 133, 63, 0.55) 100%), 
+    url('../images/coffee_image.jpeg') center center/cover no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  background-attachment: fixed; /* Creates parallax effect */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="rgba(255,255,255,0.08)"/><circle cx="80" cy="40" r="1.5" fill="rgba(255,255,255,0.06)"/><circle cx="40" cy="70" r="1" fill="rgba(255,255,255,0.04)"/><circle cx="70" cy="80" r="2.5" fill="rgba(255,255,255,0.02)"/></svg>') repeat;
+  opacity: 0.3;
+  animation: float 20s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+.hero-overlay {
+  position: relative;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.1); /* Subtle dark overlay for better text readability */
+  border-radius: 20px;
+  padding: 3rem;
+  backdrop-filter: blur(2px);
+}
+
+.hero-content h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 4rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 1rem;
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+.hero-subtitle {
+  font-size: 1.5rem;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 1rem;
+  font-weight: 300;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.hero-description {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  padding: 12px 30px;
+  border: none;
+  border-radius: 50px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-primary {
+  background: linear-gradient(45deg, #FFA500, #FF8C00);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 165, 0, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 165, 0, 0.4);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+}
+
+.btn-secondary:hover {
+  background: white;
+  color: #8B4513;
+}
+
+/* Featured Products */
+.featured-products {
+  padding: 5rem 0;
+  background: #FEFCF8;
+}
+
+.featured-products h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #2C1810;
+  margin-bottom: 3rem;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-top: 2rem;
+}
+
+.product-card {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  text-align: center;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.product-image {
+  margin-bottom: 1.5rem;
+}
+
+.placeholder-image {
+  width: 100px;
+  height: 100px;
+  background: linear-gradient(45deg, #8B4513, #A0522D);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  margin: 0 auto;
+}
+
+.product-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  color: #2C1810;
+  margin-bottom: 1rem;
+}
+
+.product-card p {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.6;
+}
+
+.price {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #8B4513;
+}
+
+/* About Section */
+.about {
+  padding: 5rem 0;
+  background: linear-gradient(135deg, #F5F5DC 0%, #FAEBD7 100%);
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.about-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #2C1810;
+  margin-bottom: 2rem;
+}
+
+.about-text p {
+  color: #444;
+  margin-bottom: 1.5rem;
+  font-size: 1.1rem;
+  line-height: 1.8;
+}
+
+.about-image {
+  display: flex;
+  justify-content: center;
+}
+
+.about-image .placeholder-image {
+  width: 200px;
+  height: 200px;
+  background: linear-gradient(45deg, #228B22, #32CD32);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 6rem;
+}
+
+/* Locations */
+.locations {
+  padding: 5rem 0;
+  background: #FEFCF8;
+}
+
+.locations h2 {
+  text-align: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  color: #2C1810;
+  margin-bottom: 3rem;
+}
+
+.locations-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.location-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.location-card:hover {
+  transform: translateY(-5px);
+}
+
+.location-card h3 {
+  font-family: 'Playfair Display', serif;
+  color: #8B4513;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+
+.location-card p {
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.hours {
+  color: #8B4513;
+  font-weight: 600;
+}
+
+/* Footer */
+.footer {
+  background: #2C1810;
+  color: white;
+  padding: 3rem 0 1rem;
+}
+
+.footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-section h4 {
+  font-family: 'Playfair Display', serif;
+  color: #FFA500;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
+.footer-section ul {
+  list-style: none;
+}
+
+.footer-section ul li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-section a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-section a:hover {
+  color: #FFA500;
+}
+
+.footer p {
+  text-align: center;
+  padding-top: 2rem;
+  border-top: 1px solid #444;
+  color: #ccc;
+}
+
+/* Chat Widget Customization for Contoso */
+.chat-minimized-btn {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%) !important;
+}
+
+.chat-header {
+  background: linear-gradient(90deg, #8B4513 0%, #A0522D 100%) !important;
+}
+
+.chat-title {
+  color: white !important;
+}
+
+/* TTS Settings Tab Container - positioned below navbar */
+.tts-settings-tab {
+  position: fixed !important;
+  top: 140px !important; /* Position just below the navbar */
+  right: 0 !important;
+  z-index: 998 !important; /* Below navbar but above content */
+  transition: all 0.3s ease !important;
+}
+
+/* Contoso-themed Tab Button */
+.tts-settings-tab-button {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%) !important;
+  color: white !important;
+  border: 1px solid rgba(139, 69, 19, 0.3) !important;
+  border-top-left-radius: 12px !important;
+  border-bottom-left-radius: 12px !important;
+  border-right: none !important;
+  padding: 16px 8px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  box-shadow: -4px 0 12px rgba(139, 69, 19, 0.3) !important;
+  transition: all 0.3s ease !important;
+  writing-mode: vertical-rl !important;
+  text-orientation: mixed !important;
+  min-height: 100px !important;
+  width: 32px !important;
+  font-family: 'Segoe UI', sans-serif !important;
+}
+
+.tts-settings-tab-button:hover {
+  background: linear-gradient(135deg, #A0522D 0%, #CD853F 100%) !important;
+  transform: translateX(-3px) !important;
+  box-shadow: -6px 0 16px rgba(139, 69, 19, 0.4) !important;
+}
+
+.tab-text {
+  font-size: 0.7rem !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.8px !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+  line-height: 1.2 !important;
+  color: white !important;
+}
+
+/* Contoso-themed Settings Panel */
+.tts-settings-panel {
+  position: absolute !important;
+  top: 0 !important;
+  right: 100% !important;
+  width: 320px !important;
+  max-width: 80vw !important;
+  background: #FEFCF8 !important;
+  border-radius: 16px !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  box-shadow: -8px 0 32px rgba(139, 69, 19, 0.2) !important;
+  transform: translateX(100%) !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  transition: all 0.3s ease !important;
+  border: 2px solid #8B4513 !important;
+  border-right: none !important;
+  max-height: 75vh !important;
+  overflow-y: auto !important;
+}
+
+/* Show Panel When Tab is Open */
+.tts-settings-tab.open .tts-settings-panel {
+  transform: translateX(0) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Adjust Tab Button When Open */
+.tts-settings-tab.open .tts-settings-tab-button {
+  background: linear-gradient(135deg, #CD853F 0%, #DEB887 100%) !important;
+  color: #2C1810 !important;
+  border-color: #8B4513 !important;
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-top-right-radius: 12px !important;
+  border-bottom-right-radius: 12px !important;
+  box-shadow: 4px 0 12px rgba(139, 69, 19, 0.3) !important;
+}
+
+.tts-settings-tab.open .tab-text {
+  text-shadow: none !important;
+  color: #2C1810 !important;
+}
+
+/* Contoso-themed Settings Header */
+.tts-settings-header {
+  background: linear-gradient(90deg, #8B4513 0%, #A0522D 100%) !important;
+  color: white !important;
+  padding: 16px 20px !important;
+  border-top-left-radius: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  box-shadow: 0 2px 4px rgba(139, 69, 19, 0.1) !important;
+}
+
+.tts-settings-header h3 {
+  margin: 0 !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  font-family: 'Playfair Display', serif !important;
+  color: white !important;
+}
+
+.tts-close-btn {
+  background: none !important;
+  border: none !important;
+  color: white !important;
+  font-size: 1.4rem !important;
+  cursor: pointer !important;
+  padding: 0 !important;
+  width: 28px !important;
+  height: 28px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  border-radius: 50% !important;
+  transition: background-color 0.2s !important;
+}
+
+.tts-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Contoso-themed Settings Content */
+.tts-settings-content {
+  padding: 20px !important;
+  background: #FEFCF8 !important;
+  border-bottom-left-radius: 14px !important;
+}
+
+.tts-setting-group {
+  margin-bottom: 16px !important;
+}
+
+.tts-setting-group label {
+  display: block !important;
+  margin-bottom: 6px !important;
+  font-weight: 600 !important;
+  color: #2C1810 !important;
+  font-size: 0.9rem !important;
+  font-family: 'Segoe UI', sans-serif !important;
+}
+
+.tts-setting-group select {
+  width: 100% !important;
+  padding: 10px 12px !important;
+  border: 2px solid #D2B48C !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  background: white !important;
+  color: #2C1810 !important;
+  transition: all 0.2s !important;
+  font-family: 'Segoe UI', sans-serif !important;
+  cursor: pointer !important;
+}
+
+.tts-setting-group select:focus {
+  outline: none !important;
+  border-color: #8B4513 !important;
+  box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1) !important;
+}
+
+.tts-setting-group select:hover {
+  border-color: #A0522D !important;
+  background: #F9F9F9 !important;
+}
+
+/* Contoso-themed Action Buttons */
+.tts-test-btn,
+.tts-reset-btn {
+  width: 100% !important;
+  padding: 12px 16px !important;
+  border: none !important;
+  border-radius: 8px !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  cursor: pointer !important;
+  margin-bottom: 8px !important;
+  transition: all 0.3s !important;
+  font-family: 'Segoe UI', sans-serif !important;
+}
+
+.tts-test-btn {
+  background: linear-gradient(135deg, #8B4513 0%, #A0522D 100%) !important;
+  color: white !important;
+  box-shadow: 0 4px 12px rgba(139, 69, 19, 0.2) !important;
+}
+
+.tts-test-btn:hover {
+  transform: translateY(-2px) !important;
+  box-shadow: 0 6px 16px rgba(139, 69, 19, 0.3) !important;
+  background: linear-gradient(135deg, #A0522D 0%, #CD853F 100%) !important;
+}
+
+.tts-reset-btn {
+  background: #F5F5DC !important;
+  color: #8B4513 !important;
+  border: 2px solid #D2B48C !important;
+}
+
+.tts-reset-btn:hover {
+  background: #DEB887 !important;
+  border-color: #8B4513 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 3px 8px rgba(139, 69, 19, 0.2) !important;
+}
+
+/* Ensure hero section doesn't have extra margin */
+.hero {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+/* Ensure navbar has proper z-index */
+.navbar {
+  z-index: 1000;
+}
+
+/* Custom scrollbar for TTS panel to match Contoso theme */
+.tts-settings-panel::-webkit-scrollbar {
+  width: 6px;
+}
+
+.tts-settings-panel::-webkit-scrollbar-track {
+  background: #F5F5DC;
+  border-radius: 3px;
+}
+
+.tts-settings-panel::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #D2B48C 0%, #8B4513 100%);
+  border-radius: 3px;
+}
+
+.tts-settings-panel::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #8B4513 0%, #A0522D 100%);
+}
+
+/* Responsive Adjustments for Contoso */
+@media (max-width: 768px) {
+  .tts-settings-tab {
+    top: 65px;
+  }
+  
+  .tts-settings-panel {
+    width: 280px;
+    max-width: 85vw;
+  }
+  
+  .tts-settings-tab-button {
+    width: 28px;
+    min-height: 80px;
+    padding: 12px 6px;
+  }
+  
+  .tab-text {
+    font-size: 0.65rem;
+  }
+  
+  .hero {
+    background-attachment: scroll; /* Better performance on mobile */
+    height: 80vh; /* Slightly shorter on mobile */
+  }
+  
+  .hero-overlay {
+    padding: 2rem;
+    margin: 1rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .tts-settings-tab {
+    top: 60px;
+  }
+  
+  .tts-settings-panel {
+    width: 260px;
+    max-width: 90vw;
+  }
+  
+  .tts-settings-tab-button {
+    width: 26px;
+    min-height: 70px;
+    padding: 10px 5px;
+  }
+  
+  .tab-text {
+    font-size: 0.6rem;
+  }
+  
+  .tts-settings-content {
+    padding: 16px;
+  }
+  
+  .tts-setting-group {
+    margin-bottom: 14px;
+  }
+  
+  .hero {
+    height: 70vh;
+  }
+  
+  .hero-overlay {
+    padding: 1.5rem;
+    margin: 0.5rem;
+  }
+  
+  .hero-content h1 {
+    font-size: 2rem;
+  }
+}
+
+/* Override any existing TTS styles that might conflict */
+.tts-settings-tab * {
+  box-sizing: border-box;
+}
+
+/* Ensure proper typography inheritance */
+.tts-settings-panel,
+.tts-settings-panel * {
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tts-settings-header h3 {
+  font-family: 'Playfair Display', serif !important;
+}

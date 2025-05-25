@@ -1,0 +1,677 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Internal Revenue Service | An official website of the United States government</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Fonts and Icons -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+    .irs-header {
+      background: #0a3161;
+      color: #fff;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      min-height: 48px;
+      display: flex;
+      flex-direction: column;
+    }
+    .irs-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 48px;
+    }
+    .irs-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+    .irs-logo img {
+      height: 32px;
+      margin-right: 0.5rem;
+    }
+    .irs-nav {
+      display: flex;
+      align-items: center;
+      gap: 2rem;
+      font-size: 1rem;
+    }
+    .irs-nav a {
+      color: #fff;
+      text-decoration: none;
+      padding: 0.5rem 0.7rem;
+      border-radius: 4px;
+      transition: background 0.2s;
+      font-weight: 500;
+    }
+    .irs-nav a:hover {
+      background: #174ea6;
+    }
+    .irs-actions {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      font-size: 0.95rem;
+    }
+    .irs-actions a {
+      color: #fff;
+      text-decoration: none;
+      margin-left: 0.5rem;
+      font-weight: 500;
+    }
+    .irs-search {
+      margin-left: 1.5rem;
+      display: flex;
+      align-items: center;
+    }
+    .irs-search input[type="text"] {
+      border: none;
+      border-radius: 3px 0 0 3px;
+      padding: 0.4rem 0.7rem;
+      font-size: 1rem;
+      outline: none;
+    }
+    .irs-search button {
+      border: none;
+      background: #174ea6;
+      color: #fff;
+      padding: 0.4rem 0.7rem;
+      border-radius: 0 3px 3px 0;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .irs-hero {
+      width: 100%;
+      min-height: 260px;
+      background: url('https://www.irs.gov/pub/2021-10/hero-1-optimized.jpg') center center/cover no-repeat;
+      display: flex;
+      align-items: flex-end;
+      position: relative;
+    }
+    .irs-hero-caption {
+      left: unset;
+      right: 18.5%;
+      top: 50%;
+      bottom: unset;
+      transform: translateY(-50%);
+      max-width: 420px;
+      position: absolute;
+      background: rgba(10,49,97,0.85);
+      color: #fff;
+      padding: 1.2rem 2rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+      border-radius: 8px;
+      text-align: center;
+    }
+    .irs-main {
+      background: #fff;
+      padding: 0;
+      margin: 0;
+    }
+    .irs-help-section {
+      background: #fff;
+      padding: 2rem 0 1.5rem 0;
+      text-align: center;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .irs-help-title {
+      font-size: 1.3rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #0a3161;
+    }
+    .irs-help-links {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+    .irs-help-link {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #0a3161;
+      text-decoration: none;
+      font-size: 1.05rem;
+      font-weight: 500;
+      min-width: 140px;
+      margin-bottom: 0.5rem;
+      transition: color 0.2s;
+    }
+    .irs-help-link i {
+      font-size: 1.5rem;
+      margin-bottom: 0.3rem;
+      color: #184d27;
+    }
+    .irs-help-link:hover {
+      color: #184d27;
+    }
+    .irs-tools-section {
+      background: #f8fafc;
+      padding: 2rem 0 1.5rem 0;
+      text-align: center;
+      border-bottom: 1px solid #e5e5e5;
+    }
+    .irs-tools-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #0a3161;
+    }
+    .irs-tools-slider {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 0.5rem;
+    }
+    .irs-tool-card {
+      background: #fff;
+      border: 1px solid #e0efe7;
+      border-radius: 10px;
+      padding: 1.2rem 1.5rem;
+      min-width: 220px;
+      max-width: 260px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(24,77,39,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .irs-tool-card-title {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: #184d27;
+      margin-bottom: 0.5rem;
+    }
+    .irs-tool-card-desc {
+      font-size: 0.98rem;
+      color: #2e3a4d;
+      margin-bottom: 0.7rem;
+    }
+    .irs-tool-card-link {
+      color: #0a3161;
+      text-decoration: underline;
+      font-size: 0.98rem;
+      font-weight: 500;
+      margin-top: auto;
+    }
+    .irs-news-section {
+      background: #fff;
+      padding: 2rem 0 2rem 0;
+      text-align: center;
+    }
+    .irs-news-title {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      color: #0a3161;
+    }
+    .irs-news-slider {
+      display: flex;
+      justify-content: center;
+      align-items: stretch;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+    .irs-news-card {
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 1.2rem 1.2rem 1rem 1.2rem;
+      min-width: 220px;
+      max-width: 260px;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(24,77,39,0.08);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .irs-news-card-title {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: #184d27;
+      margin-bottom: 0.5rem;
+    }
+    .irs-news-card-desc {
+      font-size: 0.97rem;
+      color: #2e3a4d;
+      margin-bottom: 0.7rem;
+    }
+    .irs-news-card-link {
+      color: #0a3161;
+      text-decoration: underline;
+      font-size: 0.97rem;
+      font-weight: 500;
+      margin-top: auto;
+    }
+    .irs-footer {
+      background: #f8fafc;
+      color: #222;
+      padding: 2rem 0 1rem 0;
+      border-top: 1px solid #e0efe7;
+      font-size: 0.98rem;
+      margin-top: 2rem;
+    }
+    .irs-footer-main {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 3rem;
+      margin-bottom: 1.5rem;
+    }
+    .irs-footer-col {
+      min-width: 180px;
+      max-width: 220px;
+    }
+    .irs-footer-col-title {
+      font-weight: 700;
+      color: #184d27;
+      margin-bottom: 0.7rem;
+      font-size: 1.05rem;
+    }
+    .irs-footer-col ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    .irs-footer-col ul li {
+      margin-bottom: 0.4rem;
+    }
+    .irs-footer-col ul li a {
+      color: #184d27;
+      text-decoration: none;
+      font-size: 0.97rem;
+      transition: color 0.2s;
+    }
+    .irs-footer-col ul li a:hover {
+      color: #0a3161;
+      text-decoration: underline;
+    }
+    .irs-footer-bottom {
+      text-align: center;
+      color: #666;
+      font-size: 0.93rem;
+      margin-top: 1rem;
+    }
+    .irs-footer-social {
+      margin-top: 0.7rem;
+      text-align: center;
+    }
+    .irs-footer-social a {
+      color: #184d27;
+      margin: 0 0.4rem;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .irs-footer-social a:hover {
+      color: #0a3161;
+    }
+
+    /* Chat button and chat box styles (from basic_agent/home.html) */
+    #chat-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0a3161; /* Match IRS blue */
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(10,49,97,0.25);
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.2s;
+    }
+    #chat-toggle:hover {
+      background: #174ea6;
+    }
+    #chat-box {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      width: 370px;
+      height: 600px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(10,49,97,0.13);
+      background-color: #f8fafc;
+      display: none;
+      z-index: 1050;
+      border: 3px solid #0a3161;
+    }
+    #chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #0a3161;
+      padding: 0.5rem 1rem 0.5rem 1.2rem;
+      height: 56px;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+    }
+    #chat-header .title {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #fff;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    #chat-header button {
+      background: transparent;
+      border: none;
+      color: #fff;
+      font-size: 1.3rem;
+      cursor: pointer;
+      margin-right: 0.5rem;
+      line-height: 1;
+      padding: 0;
+      transition: color 0.2s;
+    }
+    #chat-header button:last-child {
+      margin-left: 1rem;
+      font-size: 1.5rem;
+    }
+    #chat-header button:hover {
+      color: #ffd700;
+    }
+    #webchat {
+      width: 100%;
+      height: 85%;
+      padding: 3px;
+      margin: 0;
+      overflow: hidden;
+      min-height: 0;
+      border: none;
+      display: block;
+      background: #fff;
+    }
+  </style>
+  <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+</head>
+<body>
+  <header class="irs-header">
+    <div class="irs-topbar">
+      <div class="irs-logo">
+        <img src="https://www.irs.gov/themes/custom/pup_base/IRS-Logo.svg" alt="IRS Logo">
+        IRS
+      </div>
+      <nav class="irs-nav">
+        <a href="#">File</a>
+        <a href="#">Pay</a>
+        <a href="#">Refunds</a>
+        <a href="#">Credits & Deductions</a>
+        <a href="#">Forms & Instructions</a>
+      </nav>
+      <div class="irs-actions">
+        <a href="#">Español</a>
+        <a href="#">中文</a>
+        <a href="#">Other Languages</a>
+        <a href="#">Sign In</a>
+        <div class="irs-search">
+          <input type="text" placeholder="Search">
+          <button><i class="fa fa-search"></i></button>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div class="irs-hero">
+    <div class="irs-hero-caption">
+      Helping people understand and meet their tax responsibilities.
+    </div>
+  </div>
+  <main class="irs-main">
+    <section class="irs-help-section">
+      <div class="irs-help-title">How can we help you?</div>
+      <div class="irs-help-links">
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-file-lines"></i> View your federal status</a>
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-circle-question"></i> Get tax help</a>
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-credit-card"></i> Make a payment</a>
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-user"></i> Get an ID protection PIN</a>
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-file-invoice-dollar"></i> Apply for payment plan</a>
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-envelope"></i> Get tax records</a>
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-file-signature"></i> File your return</a>
+        <a class="irs-help-link" href="#"><i class="fa-solid fa-magnifying-glass"></i> Where's my refund?</a>
+      </div>
+    </section>
+    <section class="irs-tools-section">
+      <div class="irs-tools-title">Tools & applications</div>
+      <div class="irs-tools-slider">
+        <div class="irs-tool-card">
+          <div class="irs-tool-card-title">IRS Free File</div>
+          <div class="irs-tool-card-desc">Prepare and file your federal taxes online for free.</div>
+          <a class="irs-tool-card-link" href="#">Try IRS Free File</a>
+        </div>
+        <div class="irs-tool-card">
+          <div class="irs-tool-card-title">IRS Direct File</div>
+          <div class="irs-tool-card-desc">File your federal taxes directly with the IRS.</div>
+          <a class="irs-tool-card-link" href="#">Check your eligibility</a>
+        </div>
+        <div class="irs-tool-card">
+          <div class="irs-tool-card-title">Get Transcript</div>
+          <div class="irs-tool-card-desc">Access your tax records online securely.</div>
+          <a class="irs-tool-card-link" href="#">Get Transcript</a>
+        </div>
+      </div>
+    </section>
+    <section class="irs-news-section">
+      <div class="irs-news-title">News & announcements</div>
+      <div class="irs-news-slider">
+        <div class="irs-news-card">
+          <div class="irs-news-card-title">File for free</div>
+          <div class="irs-news-card-desc">IRS Free File lets you file your federal return online for free.</div>
+          <a class="irs-news-card-link" href="#">Learn how to file for free</a>
+        </div>
+        <div class="irs-news-card">
+          <div class="irs-news-card-title">Disaster relief</div>
+          <div class="irs-news-card-desc">Tax relief is available for those affected by recent disasters.</div>
+          <a class="irs-news-card-link" href="#">Find the relief information</a>
+        </div>
+        <div class="irs-news-card">
+          <div class="irs-news-card-title">Tax updates and news</div>
+          <div class="irs-news-card-desc">Stay up to date with the latest IRS news and updates.</div>
+          <a class="irs-news-card-link" href="#">See the latest announcements</a>
+        </div>
+        <div class="irs-news-card">
+          <div class="irs-news-card-title">Scams and schemes alerts</div>
+          <div class="irs-news-card-desc">Learn how to protect yourself from tax scams and fraud.</div>
+          <a class="irs-news-card-link" href="#">Get the latest updates</a>
+        </div>
+      </div>
+    </section>
+  </main>
+  <!-- Floating Chat Button -->
+  <button id="chat-toggle">
+    💬
+  </button>
+  <!-- Floating Chat Container -->
+  <div id="chat-box">
+    <div id="chat-header">
+      <div class="title">
+        <i class="fa-solid fa-robot"></i>
+        IRS Assistant
+      </div>
+      <div>
+        <button id="chat-restart" title="Restart chat">&#8635;</button>
+        <button id="chat-close" title="Close chat">&times;</button>
+      </div>
+    </div>
+    <div id="webchat" role="main"></div>
+  </div>
+  <footer class="irs-footer">
+    <div class="irs-footer-main">
+      <div class="irs-footer-col">
+        <div class="irs-footer-col-title">Our Agency</div>
+        <ul>
+          <li><a href="#">About IRS</a></li>
+          <li><a href="#">Careers</a></li>
+          <li><a href="#">Operations and Budget</a></li>
+          <li><a href="#">IRS.gov Information</a></li>
+        </ul>
+      </div>
+      <div class="irs-footer-col">
+        <div class="irs-footer-col-title">Help</div>
+        <ul>
+          <li><a href="#">Contact Your Local Office</a></li>
+          <li><a href="#">Taxpayer Assistance Center</a></li>
+          <li><a href="#">Forms & Publications</a></li>
+          <li><a href="#">FAQs</a></li>
+        </ul>
+      </div>
+      <div class="irs-footer-col">
+        <div class="irs-footer-col-title">Resolve an Issue</div>
+        <ul>
+          <li><a href="#">Taxpayer Advocate</a></li>
+          <li><a href="#">Identity Theft</a></li>
+          <li><a href="#">Report Fraud</a></li>
+          <li><a href="#">Whistleblower Office</a></li>
+        </ul>
+      </div>
+      <div class="irs-footer-col">
+        <div class="irs-footer-col-title">Languages</div>
+        <ul>
+          <li><a href="#">Español</a></li>
+          <li><a href="#">中文</a></li>
+          <li><a href="#">Other Languages</a></li>
+        </ul>
+      </div>
+      <div class="irs-footer-col">
+        <div class="irs-footer-col-title">Related Sites</div>
+        <ul>
+          <li><a href="#">Treasury Inspector General</a></li>
+          <li><a href="#">USA.gov</a></li>
+          <li><a href="#">IRS2Go Mobile App</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="irs-footer-social">
+      <a href="#"><i class="fab fa-facebook-square"></i></a>
+      <a href="#"><i class="fab fa-x-twitter"></i></a>
+      <a href="#"><i class="fab fa-youtube"></i></a>
+      <a href="#"><i class="fab fa-linkedin"></i></a>
+    </div>
+    <div class="irs-footer-bottom">
+      &copy; <span id="copyright-year"></span> Internal Revenue Service. All rights reserved.
+      <br>
+      <a href="#" style="color:#184d27;">Privacy Policy</a> | <a href="#" style="color:#184d27;">Accessibility</a>
+    </div>
+  </footer>
+  <script>
+    // Chat button logic
+    const toggleBtn = document.getElementById('chat-toggle');
+    const chatBox = document.getElementById('chat-box');
+    const closeBtn = document.getElementById('chat-close');
+    const restartBtn = document.getElementById('chat-restart');
+
+    toggleBtn.addEventListener('click', () => {
+      const isVisible = chatBox.style.display === 'block';
+      chatBox.style.display = isVisible ? 'none' : 'block';
+      toggleBtn.innerHTML = isVisible ? '✖' : '💬';
+    });
+
+    closeBtn.addEventListener('click', () => {
+      chatBox.style.display = 'none';
+      toggleBtn.innerHTML = '💬';
+    });
+
+    restartBtn.addEventListener('click', () => {
+      // Restart the chat by reloading the webchat
+      document.getElementById('webchat').innerHTML = '';
+      startWebChat();
+    });
+
+    // Web Chat initialization (from basic_agent.html)
+    function startWebChat() {
+      (async function () {
+        const styleOptions = {
+          hideUploadButton: true,
+          backgroundColor: "#fff",
+          bubbleBackground: "#e0efe7",
+          bubbleTextColor: "#0a3161",
+          bubbleBorderRadius: 14,
+          fontFamily: "'Montserrat', Arial, sans-serif",
+          sendBoxBackground: "#e0efe7",
+          sendBoxTextColor: "#0a3161",
+          sendBoxButtonColor: "#0a3161",
+          accent: "#0a3161",
+          botAvatarInitials: "IRS",
+          userAvatarInitials: "You",
+          sendBoxHeight: 48,
+          sendBoxBorderTop: "1px solid #0a3161",
+          paddingBottom: 12
+        };
+
+        // Replace with your actual Direct Line token endpoint and logic
+        const tokenEndpointURL = new URL('https://8247265bb5f8e14992095a3455e1a8.1d.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr377_sentimentAnalysisAgent/directline/token?api-version=2022-03-01-preview');
+        const locale = document.documentElement.lang || 'en';
+        const apiVersion = tokenEndpointURL.searchParams.get('api-version');
+
+        const [directLineURL, token] = await Promise.all([
+          fetch(new URL(`/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`, tokenEndpointURL))
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to retrieve regional channel settings.');
+              }
+              return response.json();
+            })
+            .then(({ channelUrlsById: { directline } }) => directline),
+          fetch(tokenEndpointURL)
+            .then(response => {
+              if (!response.ok) {
+                throw new Error('Failed to retrieve Direct Line token.');
+              }
+              return response.json();
+            })
+            .then(({ token }) => token)
+        ]);
+
+        const directLine = window.WebChat.createDirectLine({ domain: new URL('v3/directline', directLineURL), token });
+
+        const subscription = directLine.connectionStatus$.subscribe({
+          next(value) {
+            if (value === 2) {
+              directLine
+                .postActivity({
+                  localTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                  locale,
+                  name: 'startConversation',
+                  type: 'event'
+                })
+                .subscribe();
+              subscription.unsubscribe();
+            }
+          }
+        });
+
+        window.WebChat.renderWebChat({ directLine, locale, styleOptions }, document.getElementById('webchat'));
+      })();
+    }
+    // Start chat on page load (but keep hidden until opened)
+    startWebChat();
+
+    // Footer copyright
+    document.getElementById('copyright-year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

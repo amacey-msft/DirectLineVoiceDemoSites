@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contoso Coffee - Premium Coffee Experience</title>
+  
+  <!-- Load CSS files in the correct order -->
+  <link rel="stylesheet" href="../static/css/chat-widget.css">
+  <link rel="stylesheet" href="../static/css/tts-settings.css">
+  <link rel="stylesheet" href="../static/css/contoso.css">
+  
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@300;400;600;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <!-- Remove or comment out the logo line since the image doesn't exist -->
+        <!-- <img src="../static/images/contoso-logo.png" alt="Contoso Coffee" class="logo" onerror="this.style.display='none'"> -->
+        <span class="brand-text">Contoso Coffee</span>
+      </div>
+      <ul class="nav-menu">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#locations">Locations</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- TTS Settings Tab - positioned under navbar -->
+  <div id="ttsSettingsTab" class="tts-settings-tab">
+    <button id="ttsSettingsToggle" class="tts-settings-tab-button" onclick="toggleTTSSettings()" aria-label="Voice Settings">
+      <div class="tab-text">Voice Settings</div>
+    </button>
+
+    <div id="ttsSettingsPanel" class="tts-settings-panel">
+      <div class="tts-settings-header">
+        <h3>☕ Voice Settings</h3>
+        <button class="tts-close-btn" onclick="toggleTTSSettings()" aria-label="Close">×</button>
+      </div>
+      
+      <div class="tts-settings-content">
+        <!-- Voice Selection -->
+        <div class="tts-setting-group">
+          <label for="voiceSelect">Voice:</label>
+          <select id="voiceSelect" onchange="updateVoiceSetting(this.value)"></select>
+        </div>
+
+        <div class="tts-setting-group">
+          <label for="ttsRate">Speech Rate:</label>
+          <select id="ttsRate" onchange="updateTTSSetting('rate', this.value)">
+            <option value="x-slow">Extra Slow</option>
+            <option value="slow">Slow</option>
+            <option value="medium">Medium</option>
+            <option value="fast">Fast</option>
+            <option value="x-fast">Extra Fast</option>
+            <option value="80%">80%</option>
+            <option value="90%">90%</option>
+            <option value="100%">100%</option>
+            <option value="110%">110%</option>
+            <option value="120%">120%</option>
+          </select>
+        </div>
+
+        <div class="tts-setting-group">
+          <label for="ttsPitch">Pitch:</label>
+          <select id="ttsPitch" onchange="updateTTSSetting('pitch', this.value)">
+            <option value="x-low">Extra Low</option>
+            <option value="low">Low</option>
+            <option value="medium">Medium</option>
+            <option value="high">High</option>
+            <option value="x-high">Extra High</option>
+            <option value="-20%">-20%</option>
+            <option value="-10%">-10%</option>
+            <option value="-5%">-5%</option>
+            <option value="+0%">+0%</option>
+            <option value="+5%">+5%</option>
+            <option value="+10%">+10%</option>
+            <option value="+15%">+15%</option>
+            <option value="+20%">+20%</option>
+          </select>
+        </div>
+
+        <div class="tts-setting-group">
+          <label for="ttsVolume">Volume:</label>
+          <select id="ttsVolume" onchange="updateTTSSetting('volume', this.value)">
+            <option value="silent">Silent</option>
+            <option value="x-soft">Extra Soft</option>
+            <option value="soft">Soft</option>
+            <option value="medium">Medium</option>
+            <option value="loud">Loud</option>
+            <option value="x-loud">Extra Loud</option>
+          </select>
+        </div>
+
+        <div class="tts-setting-group">
+          <label for="ttsStyle">Speaking Style:</label>
+          <select id="ttsStyle" onchange="updateTTSSetting('style', this.value)">
+            <option value="neutral">Neutral</option>
+            <option value="cheerful">Cheerful</option>
+            <option value="friendly">Friendly</option>
+            <option value="hopeful">Hopeful</option>
+            <option value="excited">Excited</option>
+            <option value="sad">Sad</option>
+            <option value="angry">Angry</option>
+            <option value="terrified">Terrified</option>
+            <option value="unfriendly">Unfriendly</option>
+            <option value="whispering">Whispering</option>
+            <option value="shouting">Shouting</option>
+          </select>
+        </div>
+
+        <div class="tts-setting-group">
+          <label for="ttsStyleDegree">Style Intensity:</label>
+          <select id="ttsStyleDegree" onchange="updateTTSSetting('styleDegree', this.value)">
+            <option value="0.5">Very Light (0.5)</option>
+            <option value="0.8">Light (0.8)</option>
+            <option value="1.0">Normal (1.0)</option>
+            <option value="1.2">Strong (1.2)</option>
+            <option value="1.5">Very Strong (1.5)</option>
+            <option value="2.0">Maximum (2.0)</option>
+          </select>
+        </div>
+
+        <div class="tts-setting-group">
+          <label for="ttsRole">Character Role:</label>
+          <select id="ttsRole" onchange="updateTTSSetting('role', this.value)">
+            <option value="">None</option>
+            <option value="Girl">Girl</option>
+            <option value="Boy">Boy</option>
+            <option value="YoungAdultFemale">Young Adult Female</option>
+            <option value="YoungAdultMale">Young Adult Male</option>
+            <option value="OlderAdultFemale">Older Adult Female</option>
+            <option value="OlderAdultMale">Older Adult Male</option>
+            <option value="SeniorFemale">Senior Female</option>
+            <option value="SeniorMale">Senior Male</option>
+          </select>
+        </div>
+
+        <div class="tts-setting-group">
+          <button class="tts-test-btn" onclick="testCurrentTTSSettings()">
+            🔊 Test Current Settings
+          </button>
+          <button class="tts-reset-btn" onclick="resetTTSSettings()">
+            🔄 Reset to Defaults
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-overlay">
+      <div class="container">
+        <div class="hero-content">
+          <h1>Welcome to Contoso Coffee</h1>
+          <p class="hero-subtitle">Crafting exceptional coffee experiences since 1995</p>
+          <p class="hero-description">Discover our premium blends, artisanal brewing methods, and warm community atmosphere</p>
+          <div class="hero-buttons">
+            <button class="btn btn-primary">Order Online</button>
+            <button class="btn btn-secondary">Find a Location</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Featured Products -->
+  <section class="featured-products">
+    <div class="container">
+      <h2>Featured Coffees</h2>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <div class="placeholder-image">☕</div>
+          </div>
+          <h3>Ethiopian Highlands</h3>
+          <p>A bright, fruity blend with notes of citrus and chocolate</p>
+          <span class="price">$18.99</span>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <div class="placeholder-image">☕</div>
+          </div>
+          <h3>Colombian Supreme</h3>
+          <p>Rich, full-bodied with a smooth caramel finish</p>
+          <span class="price">$16.99</span>
+        </div>
+        <div class="product-card">
+          <div class="product-image">
+            <div class="placeholder-image">☕</div>
+          </div>
+          <h3>French Roast</h3>
+          <p>Bold and intense with deep, smoky undertones</p>
+          <span class="price">$15.99</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-content">
+        <div class="about-text">
+          <h2>Our Story</h2>
+          <p>For over 25 years, Contoso Coffee has been dedicated to sourcing the finest beans from around the world and roasting them to perfection. Our passion for coffee excellence drives everything we do.</p>
+          <p>From our sustainable farming partnerships to our innovative brewing techniques, we're committed to delivering an exceptional coffee experience that connects communities and cultures.</p>
+          <button class="btn btn-primary">Learn More</button>
+        </div>
+        <div class="about-image">
+          <div class="placeholder-image">🌱</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Locations Section -->
+  <section class="locations" id="locations">
+    <div class="container">
+      <h2>Visit Our Locations</h2>
+      <div class="locations-grid">
+        <div class="location-card">
+          <h3>Downtown Seattle</h3>
+          <p>123 Pike Street<br>Seattle, WA 98101</p>
+          <p class="hours">Mon-Fri: 6AM-8PM<br>Sat-Sun: 7AM-9PM</p>
+        </div>
+        <div class="location-card">
+          <h3>Bellevue Square</h3>
+          <p>456 Bellevue Way<br>Bellevue, WA 98004</p>
+          <p class="hours">Mon-Fri: 6AM-8PM<br>Sat-Sun: 7AM-9PM</p>
+        </div>
+        <div class="location-card">
+          <h3>University District</h3>
+          <p>789 University Ave<br>Seattle, WA 98105</p>
+          <p class="hours">Mon-Fri: 5:30AM-10PM<br>Sat-Sun: 6AM-10PM</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-section">
+          <h4>Contoso Coffee</h4>
+          <p>Crafting exceptional coffee experiences since 1995</p>
+        </div>
+        <div class="footer-section">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#locations">Locations</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h4>Connect</h4>
+          <ul>
+            <li><a href="#">Facebook</a></li>
+            <li><a href="#">Instagram</a></li>
+            <li><a href="#">Twitter</a></li>
+            <li><a href="#">Newsletter</a></li>
+          </ul>
+        </div>
+      </div>
+      <p>&copy; 2024 Contoso Coffee. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <!-- Chat Widget HTML -->
+  <button id="chatMinimizedBtn" class="chat-minimized-btn" onclick="toggleChat()" aria-label="Open chat">
+    <svg width="38" height="38" viewBox="0 0 38 38" fill="none">
+      <circle cx="19" cy="19" r="19" fill="#8B4513" />
+      <ellipse cx="19" cy="18" rx="11" ry="8" fill="#fff" fill-opacity="0.85" />
+      <ellipse cx="19" cy="18" rx="8" ry="6" fill="#fff" fill-opacity="0.65" />
+      <ellipse cx="19" cy="18" rx="5" ry="3" fill="#fff" fill-opacity="0.5" />
+    </svg>
+  </button>
+
+  <div class="chat-widget minimized" id="chatWidget">
+    <div class="chat-header" id="chatHeader">
+      <div class="drag-handle" title="Drag to move">
+        <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+          <circle cx="2" cy="2" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="6" cy="2" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="10" cy="2" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="2" cy="6" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="6" cy="6" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="10" cy="6" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="2" cy="10" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="6" cy="10" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="10" cy="10" r="1" fill="currentColor" opacity="0.6" />
+        </svg>
+      </div>
+      <div class="chat-title">☕ Contoso Assistant</div>
+      <div class="chat-controls">
+        <button class="chat-btn" title="Restart" aria-label="Restart" onclick="event.stopPropagation(); restartChat()">
+          <span style="font-size:1.2em;">&#x21bb;</span>
+        </button>
+        <button class="minimize-btn" title="Close" aria-label="Close" onclick="event.stopPropagation(); toggleChat()">
+          <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+            <path d="M4 4L14 14M14 4L4 14" stroke="#8B4513" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="chat-content">
+      <div id="webchat"></div>
+    </div>
+  </div>
+
+  <!-- Add WebChat SDK before other scripts -->
+  <script src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+  
+  <!-- JavaScript Files -->
+  <script src="../static/config/chat-config.js"></script>
+  <script src="../static/js/tts-manager.js"></script>
+  <script src="../static/js/tts-settings.js"></script>
+  <script src="../static/js/drag-functionality.js"></script>
+  <script src="../static/js/chat-functionality.js"></script>
+  
+  <!-- Initialize chat when page loads -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      console.log('Contoso page loaded, checking WebChat...');
+      if (typeof window.WebChat !== 'undefined') {
+        console.log('WebChat SDK loaded successfully');
+      } else {
+        console.error('WebChat SDK not loaded');
+      }
+    });
+  </script>
+</body>
+</html>

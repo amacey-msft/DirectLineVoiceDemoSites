@@ -4,19 +4,24 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>TelcoX - Connecting Your World</title>
+  <title>Ravenna City - Official Government Portal</title>
 
-  <!-- ✅ Properly load fonts and icons -->
+  <!-- Fonts and Icons -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">  
-    <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
-    <style>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script crossorigin="anonymous" src="https://cdn.botframework.com/botframework-webchat/latest/webchat.js"></script>
+  <style>
+    :root {
+      --gov-blue: #1a4b8e;
+      --gov-blue-light: #f0f6fc;
+      --gov-blue-dark: #14325c;
+      --gov-accent: #00b3e6;
+    }
     body {
       font-family: 'Montserrat', Arial, sans-serif;
       margin: 0;
-      background: linear-gradient(120deg, #0f2027, #2c5364);
-      color: #fff;
+      background: linear-gradient(120deg, #f0f6fc, #e0e7ef 80%);
+      color: var(--gov-blue-dark);
     }
 
     .hero {
@@ -36,17 +41,20 @@
       font-weight: 700;
       letter-spacing: 2px;
       margin-bottom: 1rem;
-      color: #00c6ff;
+      color: var(--gov-blue);
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
     }
 
     .tagline {
       font-size: 1.5rem;
       margin-bottom: 2rem;
-      color: #fff;
+      color: var(--gov-blue-dark);
     }
 
     .cta {
-      background: #00c6ff;
+      background: var(--gov-blue);
       color: #fff;
       padding: 1rem 2.5rem;
       border: none;
@@ -54,12 +62,12 @@
       font-size: 1.2rem;
       font-weight: 700;
       cursor: pointer;
-      box-shadow: 0 4px 20px rgba(0,198,255,0.2);
+      box-shadow: 0 4px 20px rgba(26,75,142,0.15);
       transition: background 0.3s;
     }
 
     .cta:hover {
-      background: #0072ff;
+      background: var(--gov-blue-dark);
     }
 
     .features {
@@ -71,25 +79,26 @@
     }
 
     .feature {
-      background: rgba(255,255,255,0.05);
+      background: #fff;
       border-radius: 16px;
       padding: 2rem 1.5rem;
       width: 260px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(26,75,142,0.08);
       text-align: center;
       transition: box-shadow 0.2s, border 0.2s, background 0.2s;
-      cursor: pointer; /* Makes it feel more interactive */
+      cursor: pointer;
+      border: 1.5px solid var(--gov-blue-light);
     }
 
     .feature:hover {
-      box-shadow: 0 4px 24px rgba(0,198,255,0.35);
-      border: 2px solid #00c6ff;
-      background: rgba(0,198,255,0.10);
+      box-shadow: 0 4px 24px rgba(26,75,142,0.18);
+      border: 2px solid var(--gov-blue);
+      background: var(--gov-blue-light);
     }
 
     .feature i {
       font-size: 2.5rem;
-      color: #00c6ff;
+      color: var(--gov-blue);
       margin-bottom: 1rem;
     }
 
@@ -97,11 +106,12 @@
       font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 0.5rem;
+      color: var(--gov-blue-dark);
     }
 
     .feature-desc {
       font-size: 1rem;
-      color: #cce6ff;
+      color: #2e3a4d;
     }
 
     @media (max-width: 900px) {
@@ -114,12 +124,12 @@
     /* Navigation Bar Styles */
     .navbar {
       width: 100%;
-      background: #0f2027;
-      color: #fff;
+      background: #fff;
+      color: var(--gov-blue-dark);
       display: flex;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(26,75,142,0.08);
       font-family: 'Montserrat', Arial, sans-serif;
       position: fixed;
       top: 0;
@@ -136,13 +146,14 @@
       padding: 0 32px;
     }
     .nav-logo {
-      font-size: 1.6rem;
+      font-size: 2rem;
       font-weight: 700;
-      color: #00c6ff;
+      color: var(--gov-blue);
       letter-spacing: 1px;
       display: flex;
       align-items: center;
       gap: 0.5rem;
+      white-space: nowrap;
     }
     .nav-menu {
       display: flex;
@@ -150,21 +161,56 @@
       list-style: none;
       margin: 0;
       padding: 0;
+      align-items: center;
     }
     .nav-item {
       position: relative;
     }
     .nav-link {
-      color: #fff;
+      color: var(--gov-blue-dark);
       text-decoration: none;
       font-weight: 500;
       font-size: 1rem;
       padding: 0.75rem 1rem;
       border-radius: 8px;
       transition: background 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 0.3rem;
     }
     .nav-link:hover {
-      background: rgba(255,255,255,0.1);
+      background: var(--gov-blue-light);
+      color: var(--gov-blue);
+    }
+
+    .dropdown {
+      display: none;
+      position: absolute;
+      top: 110%;
+      left: 0;
+      background: #fff;
+      min-width: 180px;
+      border-radius: 8px;
+      box-shadow: 0 4px 16px rgba(26,75,142,0.10);
+      z-index: 2100;
+      padding: 0.5rem 0;
+    }
+    .dropdown a {
+      display: block;
+      color: var(--gov-blue-dark);
+      text-decoration: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 6px;
+      font-size: 0.98rem;
+      transition: background 0.2s, color 0.2s;
+    }
+    .dropdown a:hover, .dropdown a:focus {
+      background: var(--gov-blue);
+      color: #fff;
+    }
+    .nav-item:hover .dropdown,
+    .nav-item:focus-within .dropdown {
+      display: block;
     }
 
     /* Hero background image styles */
@@ -176,64 +222,143 @@
       height: 420px;
       z-index: 0;
       background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center/cover no-repeat;
-      /* Example Unsplash image of telephone lines in countryside */
-      opacity: 0.45;
+      /* Example Unsplash image of a city or government building */
+      opacity: 0.22;
       pointer-events: none;
     }
-    .dropdown {
+
+    /* Footer styles */
+    .footer {
+      width: 100%;
+      background: #fff;
+      color: var(--gov-blue-dark);
+      text-align: center;
+      padding: 1.5rem 0 0.5rem 0;
+      font-size: 1rem;
+      margin-top: 3rem;
+      border-top: 1px solid var(--gov-blue-light);
+    }
+    .footer .copilot {
+      color: var(--gov-blue);
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    /* Chat styles */
+    #chat-toggle {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: var(--gov-blue);
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      font-size: 1.5rem;
+      box-shadow: 0 4px 20px rgba(26,75,142,0.25);
+      cursor: pointer;
+      z-index: 1000;
+      transition: background 0.2s;
+    }
+    #chat-toggle:hover {
+      background: var(--gov-blue-dark);
+    }
+    #chat-box {
+      position: fixed;
+      bottom: 100px;
+      right: 24px;
+      width: 370px;
+      height: 600px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(26,75,142,0.13);
+      background-color: #f0f6fc;
       display: none;
-      position: absolute;
-      top: 110%;
-      left: 0;
-      background: #1a2b3c;
-      min-width: 180px;
-      border-radius: 8px;
-      box-shadow: 0 4px 16px rgba(0,198,255,0.10);
-      z-index: 2100;
-      padding: 0.5rem 0;
+      z-index: 1050;
+      border: 3px solid var(--gov-blue);
+      display: flex;
+      flex-direction: column;
     }
-    .dropdown a {
-      display: block;
+    #chat-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--gov-blue);
+      padding: 0.5rem 1rem 0.5rem 1.2rem;
+      height: 56px;
+      border-top-left-radius: 14px;
+      border-top-right-radius: 14px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 2;
       color: #fff;
-      text-decoration: none;
-      padding: 0.7rem 1.2rem;
-      border-radius: 6px;
-      font-size: 0.98rem;
-      transition: background 0.2s, color 0.2s;
+      font-weight: 700;
+      font-size: 1.1rem;
     }
-    .dropdown a:hover, .dropdown a:focus {
-      background: #00c6ff;
-      color: #fff;
+    #webchat {
+      width: 100%;
+      flex: 1 1 auto;
+      min-height: 0;
+      border: none;
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      position: relative;
+      z-index: 1;
     }
-    .nav-item:hover .dropdown,
-    .nav-item:focus-within .dropdown {
-      display: block;
+    .webchat__stacked-layout__main {
+      margin-top: 0 !important;
+      height: 100% !important;
+      min-height: 0 !important;
+      display: flex !important;
+      flex-direction: column !important;
+    }
+    .webchat__basic-transcript__scrollable {
+      flex: 1 1 auto !important;
+      min-height: 0 !important;
+      max-height: none !important;
+      overflow-y: auto !important;
+    }
+    .webchat__send-box {
+      z-index: 10 !important;
+      flex-shrink: 0 !important;
+      position: relative !important;
+      bottom: 0 !important;
+      background: #f0f6fc !important;
+    }
+    #chat-header, #chat-box {
+      will-change: unset !important;
+      transition: none !important;
     }
   </style>
 </head>
 <body>
 <div class="navbar">
   <div class="nav-container">
-    <div class="nav-logo"><i class="fa-solid fa-tower-cell"></i> TelcoXel</div>
+    <div class="nav-logo" style="white-space:nowrap; font-size:2rem;">
+      <i class="fa-solid fa-landmark"></i>
+      Ravenna City
+    </div>
     <ul class="nav-menu">
       <li class="nav-item"><a href="#" class="nav-link">Home</a></li>
       <li class="nav-item">
-        <a href="#" class="nav-link">Services <i class="fa fa-caret-down"></i></a>
+        <a href="#" class="nav-link">Departments <i class="fa fa-caret-down"></i></a>
         <div class="dropdown">
-          <a href="#">Internet</a>
-          <a href="#">Television</a>
-          <a href="#">Mobile</a>
-          <a href="#">Home Telephone</a>
+          <a href="#">City Council</a>
+          <a href="#">Public Works</a>
+          <a href="#">Parks & Recreation</a>
+          <a href="#">Public Safety</a>
         </div>
       </li>
       <li class="nav-item">
-        <a href="#" class="nav-link">About <i class="fa fa-caret-down"></i></a>
-        <div class="dropdown">
-          <a href="#">Leadership</a>
-          <a href="#">Careers</a>
-        </div>
+        <a href="#" class="nav-link">Services</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Residents</a>
       </li>
       <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+      <li class="nav-item"><a href="#" class="nav-link">Login</a></li>
     </ul>
   </div>
 </div>
@@ -242,142 +367,182 @@
 <div style="position: relative;">
   <div class="hero-bg"></div>
   <div class="hero">
-    <div class="logo"><i class="fa-solid fa-tower-cell"></i> TelcoXel</div>
-    <div class="tagline">Connecting Your World with Reliable, Fast, and Secure Telecommunications</div>
-    <button class="cta">Get Started</button>
+    <div class="logo"><i class="fa-solid fa-landmark"></i> Ravenna City</div>
+    <div class="tagline">Serving our community with transparency, safety, and opportunity for all.</div>
+    <button class="cta">Explore Services</button>
     <div class="features">
       <div class="feature">
-        <i class="fa-solid fa-wifi"></i>
-        <div class="feature-title">Ultra-Fast Internet</div>
-        <div class="feature-desc">Experience blazing speeds with our next-gen fiber network.</div>
+        <i class="fa-solid fa-people-group"></i>
+        <div class="feature-title">Community Programs</div>
+        <div class="feature-desc">Engage with local events, youth activities, and volunteer opportunities.</div>
       </div>
       <div class="feature">
-        <i class="fa-solid fa-mobile-screen"></i>
-        <div class="feature-title">Mobile Plans</div>
-        <div class="feature-desc">Flexible, affordable plans for every need and device.</div>
+        <i class="fa-solid fa-building-shield"></i>
+        <div class="feature-title">Public Safety</div>
+        <div class="feature-desc">Police, fire, and emergency services dedicated to your safety.</div>
       </div>
       <div class="feature">
-        <i class="fa-solid fa-headset"></i>
-        <div class="feature-title">24/7 Support</div>
-        <div class="feature-desc">Our experts are always here to help you stay connected.</div>
+        <i class="fa-solid fa-tree-city"></i>
+        <div class="feature-title">Parks & Recreation</div>
+        <div class="feature-desc">Enjoy our parks, trails, and recreation centers for all ages.</div>
       </div>
       <div class="feature">
-        <i class="fa-solid fa-shield-halved"></i>
-        <div class="feature-title">Secure Connections</div>
-        <div class="feature-desc">Your privacy and security are our top priorities.</div>
+        <i class="fa-solid fa-gavel"></i>
+        <div class="feature-title">City Council</div>
+        <div class="feature-desc">Stay informed and participate in city government and council meetings.</div>
       </div>
     </div>
   </div>
 </div>
 
 <!-- Floating Chat Button -->
-<button id="chat-toggle" style="
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  background: #00c6ff;
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  font-size: 1.5rem;
-  box-shadow: 0 4px 20px rgba(0,198,255,0.4);
-  cursor: pointer;
-  z-index: 1000;
-">
-  💬
+<button id="chat-toggle">
+  <i class="fa-solid fa-comment-dots"></i>
 </button>
 
 <!-- Floating Chat Container -->
-<div id="chat-box" style="
-  position: fixed;
-  bottom: 100px;
-  right: 24px;
-  width: 360px;
-  height: 650px;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 4px 20px rgba(0,198,255,0.2);
-  background-color: #1a2b3c;
-  display: none;
-  z-index: 1050;
-  border: 3px solid #00c6ff;
-">
-  <!-- Chat Header with Title and Close Button -->
-  <div style="
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background: #0f2027;
-    padding: 0.5rem 1rem 0.5rem 1.2rem;
-    height: 56px;
-    border-top-left-radius: 14px;
-    border-top-right-radius: 14px;
-  ">
-    <div style="display: flex; align-items: center; gap: 0.5rem;">
-      <i class="fa-solid fa-tower-cell" style="color:#00c6ff; font-size:1.3rem;"></i>
-      <span style="color:#00c6ff; font-size:1.25rem; font-weight:700; letter-spacing:1px; font-family:'Montserrat', Arial, sans-serif;">TelcoXel Agent</span>
+<div id="chat-box" style="display:none;">
+  <div id="chat-header">
+    <div class="title">
+      <i class="fa-solid fa-robot"></i>
+      Ravenna Assistant
     </div>
-    <button id="chat-close" style="
-      background: transparent;
-      border: none;
-      color: #fff;
-      font-size: 1.5rem;
-      cursor: pointer;
-      margin-left: 1rem;
-      line-height: 1;
-      padding: 0;
-    " title="Close chat">&times;</button>
+    <div>
+      <button id="chat-restart" title="Restart chat">&#8635;</button>
+      <button id="chat-close" title="Close chat">&times;</button>
+    </div>
   </div>
-  <!-- Web Chat will be rendered here -->
-  <div id="webchat" role="main" style="width:100%; height:100%; padding: 3px; margin:0; overflow:hidden;">
-    <iframe 
-      src="/agent" 
-      frameborder="0" 
-      style="width: 100%; height: 100%; min-height: 0; border: none; overflow: hidden; display: block;"
-      scrolling="no"
-      allow="clipboard-write"
-    ></iframe>
-  </div>
+  <div id="webchat" role="main"></div>
 </div>
 
+<footer class="footer">
+  &copy; <span id="copyright-year"></span> Ravenna City. All rights reserved.
+  <span class="copilot">Built by GitHub Copilot</span>
+</footer>
 <script>
+  // Chat widget logic
   const toggleBtn = document.getElementById('chat-toggle');
   const chatBox = document.getElementById('chat-box');
   const closeBtn = document.getElementById('chat-close');
+  const restartBtn = document.getElementById('chat-restart');
+  let webchatInstance = null;
+
+  // Ensure chatbox is hidden on load
+  chatBox.style.display = 'none';
 
   toggleBtn.addEventListener('click', () => {
-    const isVisible = chatBox.style.display === 'block';
-    chatBox.style.display = isVisible ? 'none' : 'block';
-    toggleBtn.innerHTML = isVisible ? '✖' : '💬';
+    const isVisible = chatBox.style.display === 'flex';
+    if (isVisible) {
+      chatBox.style.display = 'none';
+      toggleBtn.innerHTML = '<i class="fa-solid fa-comment-dots"></i>';
+    } else {
+      chatBox.style.display = 'flex';
+      toggleBtn.innerHTML = '<i class="fa-solid fa-times"></i>';
+      // If webchat is empty, re-initialize
+      if (!document.getElementById('webchat').hasChildNodes()) {
+        startWebChat();
+      }
+    }
   });
 
   closeBtn.addEventListener('click', () => {
     chatBox.style.display = 'none';
-    toggleBtn.innerHTML = '💬';
+    toggleBtn.innerHTML = '<i class="fa-solid fa-comment-dots"></i>';
   });
 
-  // Removed fetchAzureToken and related code
-</script>
+  restartBtn.addEventListener('click', () => {
+    // End previous DirectLine connection if exists
+    if (webchatInstance && webchatInstance.directLine && typeof webchatInstance.directLine.end === 'function') {
+      webchatInstance.directLine.end();
+    }
+    // Remove and re-create the #webchat node for a true reset
+    const oldWebchatDiv = document.getElementById('webchat');
+    const newWebchatDiv = document.createElement('div');
+    newWebchatDiv.id = 'webchat';
+    newWebchatDiv.setAttribute('role', 'main');
+    oldWebchatDiv.parentNode.replaceChild(newWebchatDiv, oldWebchatDiv);
 
-<!-- Footer -->
-<footer class="footer" style="
-  width: 100%;
-  background: #0f2027;
-  color: #cce6ff;
-  text-align: center;
-  padding: 1.5rem 0 0.5rem 0;
-  font-size: 1rem;
-  margin-top: 3rem;
-">
-  &copy; <span id="copyright-year"></span> TelcoXel. All rights reserved.
-  <span style="color: #00c6ff; font-weight: 600; margin-left: 0.5rem;">Built by GitHub Copilot</span>
-</footer>
-<script>
+    // Now re-initialize
+    startWebChat();
+  });
+
+  // Web Chat initialization
+  function startWebChat() {
+    (async function () {
+      const styleOptions = {
+        hideUploadButton: true,
+        backgroundColor: "#fff",
+        bubbleBackground: "#f0f6fc",
+        bubbleTextColor: "#2e3a4d",
+        bubbleBorderRadius: 14,
+        fontFamily: "'Montserrat', Arial, sans-serif",
+        sendBoxBackground: "#f0f6fc",
+        sendBoxTextColor: "#2e3a4d",
+        sendBoxButtonColor: "#1a4b8e",
+        accent: "#1a4b8e",
+        botAvatarInitials: "RA",
+        userAvatarInitials: "You",
+        sendBoxHeight: 48,
+        sendBoxBorderTop: "1px solid #1a4b8e",
+        paddingBottom: 12,
+        rootHeight: '100%',
+        rootHeightInitial: '100%',
+        rootHeightAnimated: '100%'
+      };
+
+      const tokenEndpointURL = new URL('https://8247265bb5f8e14992095a3455e1a8.1d.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr377_sentimentAnalysisAgent/directline/token?api-version=2022-03-01-preview');
+      const locale = document.documentElement.lang || 'en';
+      const apiVersion = tokenEndpointURL.searchParams.get('api-version');
+
+      const [directLineURL, token] = await Promise.all([
+        fetch(new URL(`/powervirtualagents/regionalchannelsettings?api-version=${apiVersion}`, tokenEndpointURL))
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to retrieve regional channel settings.');
+            }
+            return response.json();
+          })
+          .then(({ channelUrlsById: { directline } }) => directline),
+        fetch(tokenEndpointURL)
+          .then(response => {
+            if (!response.ok) {
+              throw new Error('Failed to retrieve Direct Line token.');
+            }
+            return response.json();
+          })
+          .then(({ token }) => token)
+      ]);
+
+      const directLine = window.WebChat.createDirectLine({ domain: new URL('v3/directline', directLineURL), token });
+
+      // Save instance for restart
+      webchatInstance = { directLine };
+
+      const subscription = directLine.connectionStatus$.subscribe({
+        next(value) {
+          if (value === 2) {
+            directLine
+              .postActivity({
+                localTimezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+                locale,
+                name: 'startConversation',
+                type: 'event'
+              })
+              .subscribe();
+            subscription.unsubscribe();
+          }
+        }
+      });
+
+      window.WebChat.renderWebChat({ directLine, locale, styleOptions }, document.getElementById('webchat'));
+    })();
+  }
+
+  // Only initialize chat if chatbox is visible on load (default: hidden)
+  // startWebChat();
+
   // Set copyright year
   document.getElementById('copyright-year').textContent = new Date().getFullYear();
 </script>
-
 </body>
 </html>

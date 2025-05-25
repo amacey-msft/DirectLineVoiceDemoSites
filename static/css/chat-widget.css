@@ -1,0 +1,383 @@
+.chat-widget {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 370px;
+  max-width: 95vw;
+  max-height: 80vh;
+  background: #fff;
+  border-radius: 18px;
+  box-shadow: 0 12px 32px rgba(102, 126, 234, 0.18), 0 2px 8px rgba(118, 75, 162, 0.10);
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid #764ba2;
+  overflow: hidden;
+  transition: box-shadow 0.3s, width 0.3s, height 0.3s;
+}
+
+.chat-widget.minimized {
+  display: none !important;
+}
+
+.chat-widget.dragging {
+  user-select: none;
+  pointer-events: none;
+}
+
+.chat-widget.dragging .drag-handle {
+  cursor: grabbing;
+}
+
+.chat-header {
+  background: linear-gradient(90deg, #764ba2 0%, #667eea 100%);
+  color: #fff;
+  padding: 0.7rem 1.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  gap: 10px;
+}
+
+.drag-handle {
+  cursor: move;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.drag-handle:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: rgba(255, 255, 255, 1);
+}
+
+.chat-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.1rem;
+}
+
+.chat-controls {
+  display: flex;
+  gap: 6px;
+}
+
+.chat-btn,
+.minimize-btn {
+  background: #fff;
+  color: #764ba2;
+  border: none;
+  border-radius: 5px;
+  padding: 3px 10px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  min-height: 32px;
+}
+
+.chat-btn:hover,
+.minimize-btn:hover {
+  background: #764ba2;
+  color: #fff;
+}
+
+/* Update chat content to expand to fill the space */
+.chat-content {
+  flex: 1 1 auto;
+  background: #f9fafd;
+  padding: 14px 10px 10px 10px;
+  overflow-y: auto;
+}
+
+#webchat {
+  height: 380px; /* Increased height since voice control is removed */
+  min-height: 200px;
+  max-height: 55vh;
+  overflow-y: auto;
+  font-family: 'Montserrat', Arial, sans-serif;
+}
+
+.chat-minimized-btn {
+  position: fixed;
+  right: 30px;
+  bottom: 30px;
+  width: 60px;
+  height: 60px;
+  background: #764ba2;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 8px 24px rgba(102, 126, 234, 0.20);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1001;
+  transition: background 0.3s, transform 0.3s;
+}
+
+.chat-minimized-btn:hover {
+  background: #667eea;
+  transform: scale(1.05);
+}
+
+/* Replace the existing TTS settings CSS with this updated version */
+
+/* TTS Settings Tab Container - positioned in hero section */
+.tts-settings-tab {
+  position: absolute;
+  top: 50%;
+  right: 0px;
+  transform: translateY(-50%);
+  z-index: 100;
+  transition: all 0.3s ease;
+}
+
+/* Narrow Tab Button with small text */
+.tts-settings-tab-button {
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-top-left-radius: 8px;
+  border-bottom-left-radius: 8px;
+  border-right: none;
+  padding: 12px 6px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+  writing-mode: vertical-rl;
+  text-orientation: mixed;
+  min-height: 80px;
+  width: 28px;
+  box-shadow: -2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.tts-settings-tab-button:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(-2px);
+  box-shadow: -4px 0 12px rgba(0, 0, 0, 0.15);
+}
+
+.tab-text {
+  font-size: 0.65rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  line-height: 1.2;
+}
+
+/* Settings Panel */
+.tts-settings-panel {
+  position: absolute;
+  top: 0;
+  right: 100%;
+  width: 280px;
+  max-width: 75vw;
+  background: white;
+  border-radius: 12px;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  box-shadow: -6px 0 24px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-right: none;
+  max-height: 70vh;
+  overflow-y: auto;
+}
+
+/* Show Panel When Tab is Open */
+.tts-settings-tab.open .tts-settings-panel {
+  transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Adjust Tab Button When Open */
+.tts-settings-tab.open .tts-settings-tab-button {
+  background: rgba(255, 255, 255, 0.9);
+  color: #667eea;
+  border-color: rgba(102, 126, 234, 0.3);
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-right-radius: 8px;
+  border-bottom-right-radius: 8px;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.1);
+}
+
+.tts-settings-tab.open .tab-text {
+  text-shadow: none;
+}
+
+/* Settings Header */
+.tts-settings-header {
+  background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 12px 16px;
+  border-top-left-radius: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tts-settings-header h3 {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.tts-close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.3rem;
+  cursor: pointer;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: background-color 0.2s;
+}
+
+.tts-close-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Settings Content */
+.tts-settings-content {
+  padding: 16px;
+}
+
+.tts-setting-group {
+  margin-bottom: 14px;
+}
+
+.tts-setting-group label {
+  display: block;
+  margin-bottom: 4px;
+  font-weight: 500;
+  color: #333;
+  font-size: 0.85rem;
+}
+
+.tts-setting-group select {
+  width: 100%;
+  padding: 6px 10px;
+  border: 2px solid #e1e5e9;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  background: white;
+  transition: border-color 0.2s;
+}
+
+.tts-setting-group select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+/* Action Buttons */
+.tts-test-btn,
+.tts-reset-btn {
+  width: 100%;
+  padding: 8px 14px;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  margin-bottom: 6px;
+  transition: all 0.2s;
+}
+
+.tts-test-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+.tts-test-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 6px rgba(102, 126, 234, 0.3);
+}
+
+.tts-reset-btn {
+  background: #f8f9fa;
+  color: #666;
+  border: 1px solid #e1e5e9;
+}
+
+.tts-reset-btn:hover {
+  background: #e9ecef;
+  border-color: #adb5bd;
+}
+
+/* Hero section needs relative positioning for the absolute tab */
+.hero {
+  position: relative;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .tts-settings-panel {
+    width: 260px;
+    max-width: 80vw;
+  }
+  
+  .tts-settings-tab-button {
+    width: 24px;
+    min-height: 70px;
+    padding: 10px 5px;
+  }
+  
+  .tab-text {
+    font-size: 0.6rem;
+  }
+  
+  .tts-settings-tab {
+    right: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .tts-settings-panel {
+    width: 240px;
+    max-width: 85vw;
+  }
+  
+  .tts-settings-tab-button {
+    width: 22px;
+    min-height: 60px;
+    padding: 8px 4px;
+  }
+  
+  .tab-text {
+    font-size: 0.55rem;
+  }
+  
+  .tts-settings-tab {
+    right: 10px;
+  }
+}

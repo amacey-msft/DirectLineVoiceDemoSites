@@ -20,6 +20,18 @@ def favicon():
 def agent():
     return render_template('basic_agent.html')
 
+@app.route('/basic')
+def basic():
+    return render_template('basic2.html')
+
+@app.route('/irs')
+def irs():
+    return render_template('irs.html')
+
+@app.route('/springfield')
+def springfield():
+    return render_template('springfield_homepage.html')
+
 @app.route('/account')
 def account():
     user = {
@@ -44,6 +56,15 @@ def hello():
    else:
        print('Request for hello page received with no name or blank name -- redirecting')
        return redirect(url_for('index'))
+
+# Add this route for the botframework webchat
+@app.route('/botframework')
+def botframework():
+    return render_template('botframework/public/webchat.html')
+
+@app.route('/contoso')
+def contoso():
+    return render_template('contoso.html')
 
 
 if __name__ == '__main__':
