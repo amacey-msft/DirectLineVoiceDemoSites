@@ -1,8 +1,8 @@
 // Chat Configuration
 const CHAT_CONFIG = {
-  tokenEndpoint: 'https://8247265bb5f8e14992095a3455e1a8.1d.environment.api.powerplatform.com/powervirtualagents/botsbyschema/cr377_sentimentAnalysisAgent/directline/token?api-version=2022-03-01-preview',
-  speechKey: '5XBqH84hDgPJeOyjahxf2VAxUMFNCacGDp37l7BM4cSAEyCMnX5QJQQJ99BEACYeBjFXJ3w3AAAYACOGVSea',
-  speechRegion: 'eastus',
+  tokenEndpoint: '<YOUR_TOKEN_ENDPOINT>', // Replace with your token endpoint
+  speechKey: '<YOUR SPEECH KEY>', // Replace with your Azure Speech Service key
+  speechRegion: '<YOUR SPEECH REGION>', // Replace with your Azure Speech Service region
   defaultVoice: 'en-US-AvaNeural',
   ttsTimeout: 3000, // 3 seconds
   speechQueueDelay: 200, // 200ms between messages
