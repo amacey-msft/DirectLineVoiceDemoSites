@@ -108,6 +108,9 @@ GovSite/
 └── README.md                       # This file
 ```
 
+## Known Issues
+1. Testing on iOS using Safari proved unreliable for TTS readout.
+
 ## Contributing
 1. Fork the repository
 2. Create a feature branch
