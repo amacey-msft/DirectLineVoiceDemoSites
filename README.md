@@ -1,4 +1,4 @@
-# Government Site with AI Chat Integration
+# Custom Web Sites with AI Chat Integration
 
 A Flask-based web application featuring AI chat integration with Azure Bot Framework and Text-to-Speech capabilities.
 
@@ -107,6 +107,9 @@ GovSite/
 ├── requirements.txt                # Python dependencies
 └── README.md                       # This file
 ```
+
+## Known Issues
+1. Testing on iOS using Safari proved unreliable for TTS readout.
 
 ## Contributing
 1. Fork the repository
